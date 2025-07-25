@@ -1,0 +1,47 @@
+# invoke rewrite engine
+RewriteEngine On
+RewriteBase /scraping/files/demo/postersmile.de_intelligence-channel_proton.me_0ejyy8wjlx/
+
+Options -Indexes
+<IfModule mod_negotiation.c>
+	Options -MultiViews
+</IfModule>
+
+# Prevent scraping from archive for free demo
+RewriteCond %{HTTP_USER_AGENT} (ia_archiver) [NC]
+RewriteRule . - [F,L]
+
+# Create pretty URLs
+DirectorySlash Off
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [NC,L]
+# End: Create pretty URLs
+
+# Specific redirections
+RewriteRule ^index\.html$ /scraping/files/demo/postersmile.de_intelligence-channel_proton.me_0ejyy8wjlx/ [L,R=301]
+RewriteRule ^Poster_~_Kunstdrucke/Poster_~_Kunstdrucke\.html$ /scraping/files/demo/postersmile.de_intelligence-channel_proton.me_0ejyy8wjlx/Poster_-_Kunstdrucke/Poster_-_Kunstdrucke.html [L,R=301,QSD]
+RewriteRule ^poster_~_kunstdrucke/poster_~_kunstdrucke\.html$ /scraping/files/demo/postersmile.de_intelligence-channel_proton.me_0ejyy8wjlx/poster_-_kunstdrucke/poster_-_kunstdrucke.html [L,R=301,QSD]
+RewriteCond %{QUERY_STRING} ^dialog=1$
+RewriteRule ^fotohochladen/default\.aspx$ /scraping/files/demo/postersmile.de_intelligence-channel_proton.me_0ejyy8wjlx/fotohochladen/default_dialog-1.html [L,R=301,QSD]
+
+# Redirect all extensions to html
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.shtml$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.phtml$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.jhtml$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.htm$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.php$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.aspx$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.asp$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.jsp$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.apk$ $1.html [L,NC,R=301]
+# End: Redirect all extensions to html

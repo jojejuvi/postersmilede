@@ -1,0 +1,23 @@
+# Redirect non-www to www
+
+# Create pretty URLs
+# End: Create pretty URLs
+
+# Specific redirections
+rewrite ^/Poster_~_Kunstdrucke/Poster_~_Kunstdrucke\.html$ /Poster_-_Kunstdrucke/Poster_-_Kunstdrucke.html? permanent;
+rewrite ^/poster_~_kunstdrucke/poster_~_kunstdrucke\.html$ /poster_-_kunstdrucke/poster_-_kunstdrucke.html? permanent;
+if ($args ~* ^dialog=1$){ rewrite ^/fotohochladen/default\.aspx$ /fotohochladen/default_dialog-1.html? permanent; }
+
+# Redirect all extensions to html
+if ($is_args = ''){
+	rewrite ^([^.]*)\.shtml$ $1.html permanent;
+	rewrite ^([^.]*)\.phtml$ $1.html permanent;
+	rewrite ^([^.]*)\.jhtml$ $1.html permanent;
+	rewrite ^([^.]*)\.htm$ $1.html permanent;
+	rewrite ^([^.]*)\.php$ $1.html permanent;
+	rewrite ^([^.]*)\.aspx$ $1.html permanent;
+	rewrite ^([^.]*)\.asp$ $1.html permanent;
+	rewrite ^([^.]*)\.jsp$ $1.html permanent;
+	rewrite ^([^.]*)\.apk$ $1.html permanent;
+}
+# End: Redirect all extensions to html
